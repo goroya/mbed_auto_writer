@@ -79,7 +79,10 @@ function getDrive() {
 
         const watcher = chokidar.watch(watchPath, {
             ignoreInitial: true,
-            awaitWriteFinish: true
+            usePolling: true,
+            awaitWriteFinish: true,
+            interval: 100,
+            ignorePermissionErrors: false
         });
         watcher.on('add', (addFilePath) => {
             try {
@@ -104,10 +107,13 @@ function getDrive() {
                     sound: true,
                 });
             }
+        }).on('error', (error) => {
+            console.error(colors.red(' Watch Error Occur'));
+            throw error;
         });
     } catch (error) {
         console.error(colors.red('Error'));
-        console.error(colors.red(error));
+        console.error(colors.red(JSON.stringify(error)));
         process.exit(1);
     }
 })();

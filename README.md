@@ -20,6 +20,8 @@ This is a tool for automatic writing after compiling Mbed Web IDE.
 
 ## How to Use
 
+1. Execute the program with administrator authority.
+
 1. Execute "mbedaw" in the download destination folder of hex file for mbed on the command line.
 
 1. Press "Compile" button on Mbed Web IDE(https://developer.mbed.org/compiler)
