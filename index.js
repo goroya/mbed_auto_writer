@@ -78,7 +78,8 @@ function getDrive() {
         console.log(colors.green.underline('Press q to exit'))
 
         const watcher = chokidar.watch(watchPath, {
-            ignoreInitial: true
+            ignoreInitial: true,
+            awaitWriteFinish: true
         });
         watcher.on('add', (addFilePath) => {
             try {
