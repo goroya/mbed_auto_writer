@@ -91,7 +91,10 @@ function getDrive() {
                 if(fs.existsSync(mountDrive) === false){
                     throw `Mbed Mount Path (${mountDrive}) does not exist.`
                 }
-                fse.copySync(addFilePath, writeFilePath, {overwrite: true});
+                fse.copySync(addFilePath, writeFilePath, {
+                    overwrite: true,
+                    preserveTimestamps: true
+                });
                 console.log(` Witing End ${writeFilePath}`);
                 notifier.notify({
                     title: 'Mbed Auto Writer',
@@ -99,7 +102,7 @@ function getDrive() {
                     sound: true,
                 });
             } catch (error) {
-                console.error(colors.red(' Witing Failure'));
+                console.error(colors.red(' Writing Failure'));
                 console.error(colors.red(' Reason is ' + JSON.stringify(error)));
                 notifier.notify({
                     title: 'Mbed Auto Writer',
