@@ -14,7 +14,7 @@ const packageJson = require('./package.json');
 commander._name = 'mbedaw'
 commander
 .version(packageJson.version)
-.option('-w, --watch  <watch path>', 'Watching mbed hex file directory (example: mbedaw -w \'C:\\Users\\hogehoge\\Desktop\\*.hex\')')
+.option('-w, --watch  <watch path>', 'Watching mbed write file directory (example: mbedaw -w \'C:\\Users\\hogehoge\\Desktop\\*\')')
 .option('-m, --mount  <mount path>', 'Mbed Mount Drive (example: mbedaw -m \'D:\')')
 .parse(process.argv);
 
@@ -34,7 +34,7 @@ function getDrive() {
 (async () => {
     try {
         console.log(commander.watch)
-        const watchPath = commander.watch || path.join(currentPath, "*.hex");
+        const watchPath = commander.watch || path.join(currentPath, "*");
         console.log(` Watching File Path is ${watchPath}`);
 
         let mountDrive = '';
@@ -44,7 +44,7 @@ function getDrive() {
             const drives = await getDrive();
             let writeDrive = '';
             for (const drive of drives) {
-                if (drive && drive.description == 'MBED VFS USB Device') {
+                if ( drive && (drive.description.toUpperCase().indexOf('MBED') != -1) ) {
                     writeDrive = drive.mountpoints[0].path
                     console.log(colors.green(`Found Mbed Drive is "${writeDrive}"`));
                     break;
@@ -72,7 +72,9 @@ function getDrive() {
         process.stdin.resume();
         console.log(colors.green.underline('Press q to exit'))
 
-        const watcher = chokidar.watch(watchPath, {});
+        const watcher = chokidar.watch(watchPath, {
+            ignoreInitial: true
+        });
         watcher.on('add', (addFilePath) => {
             try {
                 const writeFilePath = path.join(mountDrive, path.basename(addFilePath));
