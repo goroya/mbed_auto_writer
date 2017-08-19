@@ -1,7 +1,7 @@
 {
   "name": "mbed_auto_writer",
   "description": "Auto write mbed hex file",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "repository": "gulpjs/gulp",
   "author": "goroya <goroyadevelop@gmail.com>",
   "keywords": [
