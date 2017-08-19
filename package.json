@@ -1,13 +1,20 @@
 {
   "name": "mbed_auto_writer",
+  "description": "Auto write mbed hex file",
+  "version": "0.0.5",
+  "repository": "gulpjs/gulp",
+  "author": "goroya <goroyadevelop@gmail.com>",
   "keywords": [
     "mbed"
   ],
-  "version": "0.0.5",
-  "description": "Auto write mbed hex file",
+  "files": [
+    "README.md",
+    "index.js",
+    "package-lock.json",
+    "package.json"
+  ],
   "main": "index.js",
   "license": "MIT",
-  "author": "goroya",
   "preferGlobal": true,
   "bin": {
     "mbedaw": "./index.js"
