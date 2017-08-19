@@ -19,7 +19,7 @@ This is a tool for automatic writing after compiling Mbed Web IDE.
 
 ## How to Use
 
-1. Execute "mbed_auto_writer" in the download destination folder of hex file for mbed on the command line.
+1. Execute "mbedaw" in the download destination folder of hex file for mbed on the command line.
 
 1. Press "Compile" button on Mbed Web IDE(https://developer.mbed.org/compiler)
 
@@ -27,9 +27,9 @@ This is a tool for automatic writing after compiling Mbed Web IDE.
 
 ## Help
 
-     Usage: index Usage: mbedaw [options]
+     Usage: mbedaw [options]
       Options:
-        -V, --version  output the version number
-        -w, --watch    Watching mbed hex file directory (example "C:\Users\*.hex")
-        -m, --mount    Mbed Mount Drive (example "D:")
-        -h, --help     output usage information
+        -V, --version              output the version number
+        -w, --watch  <watch path>  Watching mbed hex file directory (example: mbedaw -w 'C:\Users\hogehoge\Desktop\*.hex')
+        -m, --mount  <mount path>  Mbed Mount Drive (example: mbedaw -m 'D:')
+        -h, --help                 output usage information

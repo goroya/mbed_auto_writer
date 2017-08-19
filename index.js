@@ -11,12 +11,11 @@ const fs = require('fs');
 const fse = require('fs-extra');
 
 const packageJson = require('./package.json');
-
+commander._name = 'mbedaw'
 commander
 .version(packageJson.version)
-.usage('Usage: mbedaw [options]')
-.option('-w, --watch  <watch path>', 'Watching mbed hex file directory (example: -w \'C:\Users\hogehoge\Desktop\*.hex\')')
-.option('-m, --mount  <mount path>', 'Mbed Mount Drive (example:  -m \'D:\')')
+.option('-w, --watch  <watch path>', 'Watching mbed hex file directory (example: mbedaw -w \'C:\\Users\\hogehoge\\Desktop\\*.hex\')')
+.option('-m, --mount  <mount path>', 'Mbed Mount Drive (example: mbedaw -m \'D:\')')
 .parse(process.argv);
 
 const stdin = process.stdin;
