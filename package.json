@@ -3,7 +3,7 @@
   "keywords": [
     "mbed"
   ],
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Auto write mbed hex file",
   "main": "index.js",
   "license": "MIT",
