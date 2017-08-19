@@ -14,7 +14,7 @@ const packageJson = require('./package.json');
 commander._name = 'mbedaw'
 commander
 .version(packageJson.version)
-.option('-w, --watch  <watch path>', 'Watching mbed write file directory (example: mbedaw -w \'C:\\Users\\hogehoge\\Desktop\\*\')')
+.option('-w, --watch  <watch path>', 'Watching mbed write file directory (example: mbedaw -w \'C:\\Users\\hogehoge\\Desktop\\*.bin\')')
 .option('-m, --mount  <mount path>', 'Mbed Mount Drive (example: mbedaw -m \'D:\')')
 .parse(process.argv);
 
@@ -34,9 +34,14 @@ function getDrive() {
 (async () => {
     try {
         console.log(commander.watch)
-        const watchPath = commander.watch || path.join(currentPath, "*");
-        console.log(` Watching File Path is ${watchPath}`);
-
+        const watchPath = [];
+        if(commander.watch){
+            watchPath.push(commander.watch);
+        }else{
+            watchPath.push(path.join(currentPath, "*.hex"));
+            watchPath.push(path.join(currentPath, "*.bin"));
+        }
+        console.log(` Watching File Path is ${watchPath.join(", ")}`);
         let mountDrive = '';
         if(commander.mount !== undefined){
             mountDrive = commander.mount;
